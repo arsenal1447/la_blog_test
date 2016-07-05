@@ -1,22 +1,26 @@
 # Laravel PHP Framework
 
+## 遇到问题
+	npm install laravel-elixir --save-dev
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+>报错：Cannot find module 'laravel-elixir'
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+解决办法：使用cnpm
 
-## Official Documentation
+>安装 cnpm
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+*因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。32个赞！来自官网：“这是一个完整 npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步*。
+	
+	npm install cnpm -g --registry=https://registry.npm.taobao.org
 
-## Contributing
+*注：cnpm跟npm用法完全一致，只是在执行命令时将npm改为cnpm（以下操作将以cnpm代替npm）。*
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+>再次安装 *laravel-elixir*
 
-## Security Vulnerabilities
+	cnpm install laravel-elixir --save-dev
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+正常安装，运行
+>gulp
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+结果如下图
