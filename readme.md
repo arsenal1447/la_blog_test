@@ -40,6 +40,6 @@
 
 ![](https://github.com/zxx1988328/la_blog_test/blob/master/img/fail_1.png)
 
->通过
+>然后再修改回来，测试通过
 
 ![](https://github.com/zxx1988328/la_blog_test/blob/master/img/ok_1.png)
