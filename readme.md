@@ -26,3 +26,20 @@
 结果如下图
 
 ![](https://github.com/zxx1988328/la_blog_test/blob/master/img/phpunit_run.png)
+
+
+## 实时监控代码
+
+	gulp tdd
+
+>修改测试代码: tests/ExampleTest.php 中的 see() 这一行测试代码如下
+
+	$this->visit('/')->see('Laravel Zhou');
+
+>报错
+
+![](https://github.com/zxx1988328/la_blog_test/blob/master/img/fail_1.png)
+
+>通过
+
+![](https://github.com/zxx1988328/la_blog_test/blob/master/img/ok_1.png)
