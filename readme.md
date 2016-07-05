@@ -24,3 +24,5 @@
 
 
 结果如下图
+
+![](https://github.com/zxx1988328/la_blog_test/blob/master/img/phpunit_run.png)
