@@ -11,11 +11,26 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+// $factory->define(App\User::class, function (Faker\Generator $faker) {
+//     return [
+//         'name' => $faker->name,
+//         'email' => $faker->safeEmail,
+//         'password' => bcrypt(str_random(10)),
+//         'remember_token' => str_random(10),
+//     ];
+// });
+
+// 创建一些随机数据填充到数据表 posts
+$factory->define(App\Post::class, function ($faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'password' => bcrypt(str_random(10)),
-        'remember_token' => str_random(10),
+            'title' => $faker->sentence(mt_rand(3,10)),
+            'content' => join("\n\n",$faker->paragraphs(mt_rand(3,10))),
+            'published_at' => $faker->dateTimeBetween('-1 month','+3 days'),
     ];
 });
+
+
+
+
+
+
