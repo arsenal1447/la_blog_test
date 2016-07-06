@@ -78,7 +78,7 @@
 
 执行的命令也会报错,
 
-![](https://github.com/zxx1988328/la_blog_test/blob/master/img/question_1.png)
+![](https://github.com/zxx1988328/la_blog_test/blob/master/img/question_2.png)
 
 解决办法：去除 参数 **--plain**,再去执行
 
