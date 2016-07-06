@@ -1,6 +1,8 @@
 /vendor
 /node_modules
 /public/storage
+/.settings/
+.buildpath
 Homestead.yaml
 Homestead.json
 .env
