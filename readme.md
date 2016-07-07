@@ -83,3 +83,14 @@
 解决办法：去除 参数 **--plain**,再去执行
 
 	php artisan make:controller BlogController
+
+
+
+
+## 查看应用中的所有路由命令 
+
+	php artisan route:list
+
+显示结果
+
+![](https://github.com/zxx1988328/la_blog_test/blob/master/img/route.png)
