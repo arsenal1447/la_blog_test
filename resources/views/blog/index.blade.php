@@ -10,7 +10,7 @@
             <h5>Page {{ $posts->currentPage() }} of {{ $posts->lastPage() }}</h5>
             <hr>
             <ul>
-            @foreach ($variable as $key => $value): ?>
+            @foreach ($posts as $post)
                 <li>
                     <a href="/blog/{{ $post->slug }}">{{ $post->title }}</a>
                     <em>({{ $post->published_at }})</em>
