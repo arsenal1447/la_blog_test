@@ -103,7 +103,7 @@
 	=> App\User {#642}
 	>>> $user->name = 'admin'
 	=> "admin"
-	>>> $user->email = '297208251@qq.com'
+	>>> $user->email = 'zxx@qq.com'
 	=> "297208251@qq.com"
 	>>> $user->password = bcrypt('123456')
 	=> "$2y$10$Jfwi4x4d98MO5SJbZovt7u9z1ZM7tBHQRHvKwSNSAmNqa9aeDbHn."
