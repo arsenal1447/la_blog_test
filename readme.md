@@ -94,3 +94,22 @@
 显示结果
 
 ![](https://github.com/zxx1988328/la_blog_test/blob/master/img/route.png)
+
+
+## add amdin user
+
+	Psy Shell v0.7.2 (PHP 5.6.11 — cli) by Justin Hilemanan
+	>>> $user = new App\User;
+	=> App\User {#642}
+	>>> $user->name = 'admin'
+	=> "admin"
+	>>> $user->email = '297208251@qq.com'
+	=> "297208251@qq.com"
+	>>> $user->password = bcrypt('123456')
+	=> "$2y$10$Jfwi4x4d98MO5SJbZovt7u9z1ZM7tBHQRHvKwSNSAmNqa9aeDbHn."
+	>>> $user->save();
+	=> true
+	>>>
+
+
+![](https://github.com/zxx1988328/la_blog_test/blob/master/img/add_user.png)
