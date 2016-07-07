@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'timezone'='Asia/Shanghai',
+    'timezone' => 'Asia/Shanghai',
 
     /*
     |--------------------------------------------------------------------------
