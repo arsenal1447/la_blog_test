@@ -121,7 +121,7 @@
 	
 	composer require barryvdh/laravel-debugbar
 
-代码中添加相应代码，然后运行
+**config/app.php**代码中添加相应代码，然后cmd运行
 
 	php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
 
