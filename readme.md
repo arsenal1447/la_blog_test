@@ -113,3 +113,14 @@
 
 
 ![](https://github.com/zxx1988328/la_blog_test/blob/master/img/add_user.png)
+
+
+## 增加debug工具
+
+代码中添加相应代码，然后运行
+
+	php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
+
+![](https://github.com/zxx1988328/la_blog_test/blob/master/img/debug_tool.png)
+
+
