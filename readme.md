@@ -104,7 +104,7 @@
 	>>> $user->name = 'admin'
 	=> "admin"
 	>>> $user->email = 'zxx@qq.com'
-	=> "297208251@qq.com"
+	=> "zxx@qq.com"
 	>>> $user->password = bcrypt('123456')
 	=> "$2y$10$Jfwi4x4d98MO5SJbZovt7u9z1ZM7tBHQRHvKwSNSAmNqa9aeDbHn."
 	>>> $user->save();
