@@ -34,7 +34,7 @@ Route::group(['namespace'=>'Admin','middleware'=>'auth'],function(){
 //logging in and out
 Route::get('/login','Auth\AuthController@getLogin');
 Route::post('/login','Auth\AuthController@postLogin');
-Route::get('/logout','Auth\AuthController@getLogout');
+Route::get('/logout','Auth\AuthController@getLogout');//登陆可能遇到问题
 
 
 
