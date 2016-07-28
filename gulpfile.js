@@ -1,3 +1,4 @@
+var gulp = require('gulp');
 var elixir = require('laravel-elixir');
 
 /*
@@ -11,7 +12,38 @@ var elixir = require('laravel-elixir');
  |
  */
 
+
+
+/**
+ * copy files that needed,
+ */
+gulp.task("copyfiles", function() {
+
+    gulp.src("vendor/bower_dl/jquery/dist/jquery.js")
+        .pipe(gulp.dest("resources/assets/js/"));
+
+    gulp.src("vendor/bower_dl/bootstrap/less/**")
+        .pipe(gulp.dest("resources/assets/less/bootstrap"));
+
+    gulp.src("vendor/bower_dl/bootstrap/dist/js/bootstrap.js")
+        .pipe(gulp.dest("resources/assets/js/"));
+
+    gulp.src("vendor/bower_dl/bootstrap/dist/fonts/**")
+        .pipe(gulp.dest("public/assets/fonts"));
+
+});
+
+/**
+ * Default gulp is to run this elixir stuff
+ */
 elixir(function(mix) {
-    // mix.sass('app.scss');
-    mix.phpUnit();
+
+    // 合并 scripts
+    mix.scripts(['js/jquery.js','js/bootstrap.js'],
+        'public/assets/js/admin.js',
+        'resources/assets'
+    );
+
+    // 编译 Less 
+    mix.less('admin.less', 'public/assets/css/admin.css');
 });

@@ -159,3 +159,9 @@
 	  ]
 	}
 
+
+## 修改gulpfile文件 
+
+可能会提示缺少一些插件，安装即可
+
+	cnpm 安装即可 laravel-elixir，vinyl-map，new-from，clean-css
