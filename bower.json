@@ -1,0 +1,21 @@
+{
+  "name": "la_blog_test",
+  "description": "My blog test",
+  "main": "",
+  "authors": [
+    "zxx "
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/zxx1988328/la_blog_test",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "vendor/bower_dl",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "bootstrap": "^3.3.7"
+  }
+}

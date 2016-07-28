@@ -19,7 +19,7 @@ Route::get('blog', 'BlogController@index');
 Route::get('blog/{slug}', 'BlogController@showPost');
 
 
-//admin array_intersect_uassoc
+//admin area
 Route::get('admin',function(){
     return redirect('/admin/post');
 });

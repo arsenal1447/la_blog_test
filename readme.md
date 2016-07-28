@@ -128,3 +128,34 @@
 ![](https://github.com/zxx1988328/la_blog_test/blob/master/img/debug_tool.png)
 
 
+
+在博客项目根目录下创建 **.bowerrc** 文件，这是可选的，这样做的目的是为了告诉 Bower 所有下载的文件都会存放到 **vendor** 目录下，如果跳过这一步，Bower 将在项目根目录下创建一个 bower_dl 目录用于存放下载文件。这里我们编辑 .bowerrc 文件内容如下：
+
+	{
+	    "directory": "vendor/bower_dl"
+	}
+
+##  生成bower.json文件
+
+	bower init
+
+修改内容如下：
+
+	{
+	  "name": "la_blog_test",
+	  "description": "My blog test",
+	  "main": "",
+	  "authors": [
+	    "zxx "
+	  ],
+	  "license": "MIT",
+	  "homepage": "https://github.com/zxx1988328/la_blog_test",
+	  "ignore": [
+	    "**/.*",
+	    "node_modules",
+	    "vendor/bower_dl",
+	    "test",
+	    "tests"
+	  ]
+	}
+
