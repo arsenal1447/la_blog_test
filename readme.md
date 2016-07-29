@@ -176,3 +176,18 @@
 执行结果
 
 ![](https://github.com/zxx1988328/la_blog_test/blob/dev1/img/gulpfile.png)
+
+
+
+## 添加 Font Awesome 和 DataTables
+
+*现在 Bower 和 Gulp 都已经设置好了，前端资源也成功发布并引入视图文件了，最后我们还要添加另外两个高逼格的包：Font Awesome 和 DataTables，前者用于为 Bootstrap 设置图标字体，后者是一款 jQuery 表格插件，用于为 HTML 表格添加高级交互功能。*
+
+
+	bower install fontawesome --save 
+	bower install datatables --save 
+	bower install datatables-plugins --save
+
+我们还添加了 <font color="red">datatables-plugins</font> 以便使用 Bootstrap 风格的 DataTables。
+
+接下来编辑 <font color="red">gulpfile.js</font> 拷贝需要的前端资源到项目中：
