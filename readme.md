@@ -165,3 +165,14 @@
 可能会提示缺少一些插件，安装即可
 
 	cnpm 安装即可 laravel-elixir，vinyl-map，new-from，clean-css
+
+
+依次执行
+	
+	gulp copyfiles 
+	gulp 
+
+
+执行结果
+
+![](https://github.com/zxx1988328/la_blog_test/blob/dev1/img/gulpfile.png)
