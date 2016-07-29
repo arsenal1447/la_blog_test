@@ -6674,5 +6674,7 @@ label,
 .checkbox label {
   font-weight: 300;
 }
+@imoort "fontawesome/font-awesome";
+@imoort "others/dataTables.bootstrap.less";
 
 /*# sourceMappingURL=admin.css.map */
