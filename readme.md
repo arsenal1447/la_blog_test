@@ -205,3 +205,66 @@
 
 	php artisan make:migration --create=post_tag_pivot create_post_tag_pivot
 编辑标签迁移文件
+
+
+
+## 生成文件 
+	php artisan make:request TagCreateRequest
+	php artisan make:request TagUpdateRequest
+
+## 添加自定义函数
+	app/helpers.php 
+
+>修改文件composer.json 
+
+	 "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files":[
+            "app/helpers.php"
+        ]
+	},
+
+
+执行下面命令，即可加入到全局使用
+
+	composer dumpauto
+
+##使用的插件1
+
+	composer require "dflydev/apache-mime-types"
+
+## 生成上传相关文件
+	
+	php artisan make:request UploadFileRequest
+
+	php artisan make:request UploadNewFolderRequest
+
+## 使用的插件2
+	composer require "doctrine/dbal"
+
+
+##接下来使用 Artisan 命令创建新的迁移文件：
+
+	php artisan make:migration --table=posts restructure_posts_table
+
+
+我们对表字段略作说明：
+
+	subtitle：文章副标题
+	content_raw：Markdown格式文本
+	content_html：使用 Markdown 编辑内容但同时保存 HTML 版本
+	page_image：文章缩略图（封面图）
+	meta_description：文章备注说明
+	is_draft：该文章是否是草稿
+	layout：使用的布局
+
+##运行迁移
+
+迁移已经创建并编辑好了，接下来我们登录到 Homestead 虚拟机中运行该迁移：
+
+	php artisan migrate
