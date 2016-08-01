@@ -10,8 +10,30 @@ use App\Tag;
 
 class TagController extends Controller
 {
+    private $fields = [
+        'tag'=>'',
+        'title'=>'',
+        'subtitle'=>'',
+        'meta_description'=>'',
+        'page_image'=>'',
+        'layout'=>'blog.layouts.index',
+        'reverse_direction'=>0,
+    ];
+
     public function index(){
         $tags = Tag::all();
         return view('admin.tag.index')->withTags($tags);
+    }
+
+    /**
+     * show form for creating new tag
+     */
+    public function create(){
+        $data = [];
+        foreach ($this->fields as $field => $default) {
+            $data[$field] = old($field,$default);
+        }
+
+        return view('admin.tag.create',$data);
     }
 }
