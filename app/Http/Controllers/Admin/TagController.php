@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Tag;
+use App\Http\Requests\TagCreateRequest;
 
 class TagController extends Controller
 {
@@ -35,5 +36,22 @@ class TagController extends Controller
         }
 
         return view('admin.tag.create',$data);
+    }
+
+    /**
+     * Store the newly created tag in the database.
+     *
+     * @param TagCreateRequest $request
+     * @return Response
+     */
+    public function store(){
+        $tag = new Tag();
+        foreach (array_keys($this->fields) as $field) {
+            $tag->$field = $request->get($field);
+        }
+        $tag->save();
+
+        return redirect('admin/tag')->withSuccess("The tag '$tag->tag' was created");
+
     }
 }

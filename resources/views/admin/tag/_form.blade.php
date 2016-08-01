@@ -21,7 +21,9 @@
         Meta Description
     </label>
     <div class="col-md-8">
-        <input type="text" class="form-control" name="meta_description" id="meta_description" value="{{ $meta_description }}">
+        <textarea class="form-control" id="meta_description" name="meta_description" rows="3">
+            {{ $meta_description }}
+        </textarea>
     </div>
 </div>
 
@@ -48,20 +50,20 @@
         Direction
     </label>
     <div class="col-md-7">
-        <label class="radio-inline">   
-            <input type="radio" name="reverse_direction" id="reverse_direction" 
-                @if (!$reverse_direction)
-                    checked="checked" 
-                @endif
-                    value="0">
+        <label class="radio-inline">
+            <input type="radio" name="reverse_direction" id="reverse_direction"
+                    @if (! $reverse_direction)
+                        checked="checked"
+                    @endif
+                     value="0"> 
             Normal
         </label>
-        <label class="radio-inline">   
+        <label class="radio-inline">
             <input type="radio" name="reverse_direction"
                 @if ($reverse_direction)
-                    checked="checked" 
+                    checked="checked"
                 @endif
-                    value="1">
+                value="1"> 
             Reversed
         </label>
     </div>
