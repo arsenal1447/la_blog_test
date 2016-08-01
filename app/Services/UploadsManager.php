@@ -4,13 +4,12 @@ namespace App\Services;
 
 use Carbon\Carbon;
 use Dflydev\ApacheMimeTypes\PhpRepository;
-use Illuminate\Support\Storage;
+use Illuminate\Support\Facades\Storage;
 
 class UploadsManager
 {
     protected $disk;
     protected $mimeDetect;
-
 
     public function __construct(PhpRepository $mimeDetect)
     {
@@ -30,96 +29,115 @@ class UploadsManager
      *     'files' => array of file details on each file in folder
      * ]
      */
-     public function folderInfo($folder){
-         $folder = $this->cleanFolder($folder);
-         
-         $breadcrumbs = $this->breadcrumbs($folder);
-         $slice = array_slice($breadcrumbs,0,-1);
-         $foldername = current($slice);
-         $breadcrumbs = array_slice($breadcrumbs,0,-1);
+    public function folderInfo($folder)
+    {
+        $folder = $this->cleanFolder($folder);
 
-         $subfolders = [];
-         foreach (array_unique($this->disk->directoriess($folder)) as $subfolder) {
-             $subfolders["/$subfolders"] = basename($subfolder);
-         }
+        $breadcrumbs = $this->breadcrumbs($folder);
+        $slice = array_slice($breadcrumbs, -1);
+        $folderName = current($slice);
+        $breadcrumbs = array_slice($breadcrumbs, 0, -1);
 
-         $files = [];
-         foreach ($this->disk->files($folder) as $path) {
-             $files[] = $this->fileDetails($path);
-         }
+        $subfolders = [];
+        foreach (array_unique($this->disk->directories($folder)) as $subfolder) {
+            $subfolders["/$subfolder"] = basename($subfolder);
+        }
 
-         return compact('folder','folderName','breadcrums','subfolders','files');
-     } 
+        $files = [];
+        foreach ($this->disk->files($folder) as $path) {
+            $files[] = $this->fileDetails($path);
+        }
 
-     /**
-      * 返回当前目录路径
-      */
-     protected function breadcrumbs($folder){
-         $folder = trim($folder,'/');
-         $crumbs = ['/'=>'root'];
+        return compact(
+            'folder',
+            'folderName',
+            'breadcrumbs',
+            'subfolders',
+            'files'
+        );
+    }
 
-         if(empty($folder)){
-             return $crumbs;
-         }
+    /**
+     * Sanitize the folder name
+     */
+    protected function cleanFolder($folder)
+    {
+        return '/' . trim(str_replace('..', '', $folder), '/');
+    }
 
-         $folders = explode('/',$folder);
-         $build = '';
-         foreach ($folders as $folder) {
-             $build .= '/'.$folder;
-             $crumbs[$build] = $folder;
-         }
+    /**
+     * 返回当前目录路径
+     */
+    protected function breadcrumbs($folder)
+    {
+        $folder = trim($folder, '/');
+        $crumbs = ['/' => 'root'];
 
-         return $crumbs;
-     }
+        if (empty($folder)) {
+            return $crumbs;
+        }
 
-     /**
+        $folders = explode('/', $folder);
+        $build = '';
+        foreach ($folders as $folder) {
+            $build .= '/'.$folder;
+            $crumbs[$build] = $folder;
+        }
+
+        return $crumbs;
+    }
+
+    /**
      * 返回文件详细信息数组
      */
-     protected function fileDetails($path){
-         $path = '/'.ltrim($path,'/');
+    protected function fileDetails($path)
+    { 
+        $path = '/' . ltrim($path, '/');
 
-         return [
-             'name'=>basename($path),
-             'fullPath'=>$path,
-             'webPath'=>$this->fileWebpath($path),
-             'mimeType'=>$this->fileMimeType($path),
-             'size'=>$this->fileSize($path),
-             'modified'=>$this->fileModified($path),
-         ];
-     }
+        return [
+            'name' => basename($path),
+            'fullPath' => $path,
+            'webPath' => $this->fileWebpath($path),
+            'mimeType' => $this->fileMimeType($path),
+            'size' => $this->fileSize($path),
+            'modified' => $this->fileModified($path),
+        ];
+    }
 
     /**
      * 返回文件完整的web路径
      */
-     public function fileWebpath($path){
-         $path = rtrim(config('blog.uploads.webpath'),'/').'/'.ltrim($path,'/');
-         return url($path);
-     }
+    public function fileWebpath($path)
+    { 
+        $path = rtrim(config('blog.uploads.webpath'), '/') . '/' .ltrim($path, '/');
+        return url($path);
+    }
 
-     /**
+    /**
      * 返回文件MIME类型
      */
-     public function fileMimeType($path){
-         return $this->mimeDetect->findType(
-             pathinfo($path,PATHINFO_EXTENSION)
-         );
-     }
+    public function fileMimeType($path)
+    {
+        return $this->mimeDetect->findType(
+            pathinfo($path, PATHINFO_EXTENSION)
+        );
+    }
 
     /**
      * 返回文件大小
      */
-     public function fileSize($path){
-         return $this->disk->size($path);
-     }
+    public function fileSize($path)
+    {
+        return $this->disk->size($path);
+    }
 
-	/**
+    /**
      * 返回最后修改时间
      */
-     public function fileModified($path){
-         return Carbon::createFormTimestamp(
-             $this->disk->lastModified($path)
-         );
-     }
-
-
+    public function fileModified($path)
+    {
+        return Carbon::createFromTimestamp(
+            $this->disk->lastModified($path)
+        );
+    }
 }
