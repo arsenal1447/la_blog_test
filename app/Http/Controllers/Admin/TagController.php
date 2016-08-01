@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Tag;
 use App\Http\Requests\TagCreateRequest;
+use App\Http\Requests\TagUpdateRequest;
 
 class TagController extends Controller
 {
@@ -70,5 +71,23 @@ class TagController extends Controller
         }
 
         return view('admin.tag.edit',$data);
+    }
+
+   /**
+    * Update the tag in storage
+    *
+    * @param TagUpdateRequest $request
+    * @param int $id
+    * @return Response
+    */
+    public function update(TagUpdateRequest $request,$id){
+        $tag = Tag::findOrFail($id);
+
+        foreach (array_keys(array_except($this->fields),['tags']) as $field) {
+            $tag->$field = $request->get($field);
+        }
+        $tag->save();
+        
+        return view("/admin/tag/{$id}/edit")->withSuccess("Change saved.");
     }
 }
