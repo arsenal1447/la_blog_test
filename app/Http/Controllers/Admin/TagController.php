@@ -83,11 +83,11 @@ class TagController extends Controller
     public function update(TagUpdateRequest $request,$id){
         $tag = Tag::findOrFail($id);
 
-        foreach (array_keys(array_except($this->fields),['tags']) as $field) {
+        foreach (array_keys(array_except($this->fields,['tags'])) as $field) {
             $tag->$field = $request->get($field);
         }
         $tag->save();
         
-        return view("/admin/tag/{$id}/edit")->withSuccess("Change saved.");
+        return redirect("/admin/tag/$id/edit")->withSuccess("Change saved.");
     }
 }
