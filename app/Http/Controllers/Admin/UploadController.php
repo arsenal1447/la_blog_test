@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Services\UploadsManager;
+use App\Http\Requests\UploadFileRequest;
+use App\Http\Requests\UploadNewFolderRequest;
+use Illuminate\Support\Facades\File;
 
 class UploadController extends Controller
 {
@@ -94,13 +97,13 @@ class UploadController extends Controller
     * 上传文件
     */
     public function uploadFile(UploadFileRequest $request){
-        $file = $_FILE['file'];
+        $file = $_FILES['file'];
         $fileName = $request->get('file_name');
         $fileName = $fileName ?:$file['name'];
         $path = str_finish($request->get('folder'),'/').$fileName;
         $content = File::get($file['tmp_name']);
 
-        $result = $this->magager->saveFile($path,$content);
+        $result = $this->manager->saveFile($path,$content);
 
         if($result===true){
             return redirect()

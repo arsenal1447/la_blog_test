@@ -178,7 +178,7 @@ class UploadsManager
     public function deleteFile($path){
         $path = $this->cleanFolder($path);
 
-        if(!$this->disk->exists($folder)){
+        if(!$this->disk->exists($path)){
             return "File does not exists. ";
         }
 
@@ -191,7 +191,7 @@ class UploadsManager
     public function saveFile($path,$content){
         $path = $this->cleanFolder($path);
 
-        if(!$this->disk->exists($folder)){
+        if($this->disk->exists($path)){
             return "File already exists. ";
         }
 
