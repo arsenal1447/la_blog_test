@@ -191,3 +191,17 @@
 我们还添加了 <font color="red">datatables-plugins</font> 以便使用 Bootstrap 风格的 DataTables。
 
 接下来编辑 <font color="red">gulpfile.js</font> 拷贝需要的前端资源到项目中：
+
+
+
+
+## 创建标签模型和迁移
+首先需要创建 Tag 模型类：
+
+	php artisan make:model --migration Tag
+该命令会在 app 目录下创建模型文件 Tag.php，由于我们在 make:model 命令中使用了 --migration 选项，所以同时会创建  Tag 模型对应的数据表迁移。
+
+在标签（Tag）和文章（Post）之间存在多对多的关联关系，因此还要按照下面的命令创建存放文章和标签对应关系的数据表迁移：
+
+	php artisan make:migration --create=post_tag_pivot create_post_tag_pivot
+编辑标签迁移文件
