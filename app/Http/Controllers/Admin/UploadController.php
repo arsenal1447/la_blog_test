@@ -6,16 +6,16 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Services\UploadManager;
+use App\Services\UploadsManager;
 
 class UploadController extends Controller
 {
     protected $manager;
 
-    public function __construct(UploadManager $manager){
+    public function __construct(UploadsManager $manager){
         $this->manager = $manager;
     }
-    
+
     /**
      * Show page of files / subfolders
      */
