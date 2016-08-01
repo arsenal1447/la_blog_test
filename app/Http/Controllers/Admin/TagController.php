@@ -90,4 +90,16 @@ class TagController extends Controller
         
         return redirect("/admin/tag/$id/edit")->withSuccess("Change saved.");
     }
+
+    /**
+     *  Delete the tag
+     *  @param int $id
+     *  @return Response
+     */
+    public function destroy($id){
+        $tag = Tag::findOrFail($id);
+        $tag->delete();
+
+        return redirect("/admin/tag")->withSuccess("The '$tag->tag' tag has been deleted");
+    } 
 }
