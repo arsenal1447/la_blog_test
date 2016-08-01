@@ -44,14 +44,15 @@ class TagController extends Controller
      * @param TagCreateRequest $request
      * @return Response
      */
-    public function store(){
+    public function store(TagCreateRequest $request)
+    {
         $tag = new Tag();
         foreach (array_keys($this->fields) as $field) {
             $tag->$field = $request->get($field);
         }
         $tag->save();
 
-        return redirect('admin/tag')->withSuccess("The tag '$tag->tag' was created");
-
+        return redirect('/admin/tag')
+                        ->withSuccess("The tag '$tag->tag' was created.");
     }
 }
