@@ -64,23 +64,23 @@ class PostController extends Controller
      * @param PostCreateRequest $request
      * @param int $id
      */
-    public function update(PostCreateRequest $request, $id)
-    {
-        $post = Post::findOrFail($id);
-        $post->fill($request->postFillData());
-        $post->save();
-        $post->syncTags($request->get('tags'),[]);
+     public function update(PostUpdateRequest $request, $id)
+     {
+         $post = Post::findOrFail($id);
+         $post->fill($request->postFillData());
+         $post->save();
+         $post->syncTags($request->get('tags', []));
 
-        if($request->action==='continue')
-        {
-            return redirect()
-                            ->back()
-                            ->withSuccess('Post saved.');
-        }
-        return redirect()
-                        ->route()
-                        ->withSuccess('Post saved.');
-    }
+         if ($request->action === 'continue') {
+             return redirect()
+                             ->back()
+                             ->withSuccess('Post saved.');
+         }
+
+         return redirect()
+                         ->route('admin.post.index')
+                         ->withSuccess('Post saved.');
+     }
 
 
     public function destroy($id)
