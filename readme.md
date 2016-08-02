@@ -289,3 +289,11 @@
 
 	php artisan make:request PostCreateRequest
 	php artisan make:request PostUpdateRequest
+
+## 创建 PostFormFields 任务
+
+>接下来我们创建一个公用的、可以从 PostController 中调用的任务类，我们将其称之为 PostFormFields。该任务会在我们想要获取文章所有字段填充文章表单时被执行。
+
+>首先使用 Artisan 命令创建任务类模板：
+
+	php artisan make:job PostFormFields
