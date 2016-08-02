@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Services\Markdowner;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -18,7 +19,7 @@ class Post extends Model
          return $this->belongsToMany('App\Tag','post_tag_pivot');
      }
 
-      /**
+    /**
      * Set the title attribute and automatically the slug
      *
      * @param string $value
@@ -31,7 +32,7 @@ class Post extends Model
          }
      }
 
-      /**
+    /**
      * Recursive routine to set a unique slug
      *
      * @param string $title
@@ -48,12 +49,12 @@ class Post extends Model
          $this->attributes['slug'] = $slug;
      }
 
-     /**
+    /**
      * Set the HTML content automatically when the raw content is set
      *
      * @param string $value
      */
-      public function setContentRawAttribute($value)
+    public function setContentRawAttribute($value)
     {
         $markdown = new Markdowner();
 
