@@ -277,3 +277,15 @@
 接下来下载 Pickadate.js。Pickadate.js 是一个轻量级的 jQuery 日期时间选择插件，日期时间插件很多，选择使用  Pickadate.js 的原因是它在小型设备上也有很好的体验。下面我们使用 Bower 下载安装 <font color="red">Pickadate.js</font>：
 
 	bower install pickadate --save
+
+
+## 修改gulpfile.js文件
+
+	gulp copyfiles
+
+
+## 创建表单请求类
+首先，使用 Artisan 命令创建表单请求处理类，对应文件会生成在 app/Http/Requests 目录下：
+
+	php artisan make:request PostCreateRequest
+	php artisan make:request PostUpdateRequest
