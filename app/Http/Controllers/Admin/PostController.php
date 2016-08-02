@@ -12,36 +12,36 @@ class PostController extends Controller
 {
     /**
      * Display a listing of the posts.
-     *
-     * @return Response
      */
-    public function index(){
+    public function index()
+    {
         return view('admin.post.index')
-                ->withPosts(Post::all());
+                        ->withPosts(Post::all());
     }
 
     /**
-     * show the new post form
+     * Show the new post form
      */
     public function create()
     {
         $data = $this->dispatch(new PostFormFields());
 
-        return view('admin.post.create',$data);
+        return view('admin.post.create', $data);
     }
 
     /**
-     * store a newly created post
+     * Store a newly created Post
+     *
      * @param PostCreateRequest $request
      */
     public function store(PostCreateRequest $request)
     {
         $post = Post::create($request->postFillData());
-        $post->syncTags($request->get('tags'),[]);
+        $post->syncTags($request->get('tags', []));
 
         return redirect()
-                ->route('admin.post.index')
-                ->withSuccess('New Post Successfully Created.');
+                        ->route('admin.post.index')
+                        ->withSuccess('New Post Successfully Created.');
     }
 
     /**
@@ -54,35 +54,39 @@ class PostController extends Controller
     {
         $data = $this->dispatch(new PostFormFields($id));
 
-        return view('admin.post.edit',$data);
+        return view('admin.post.edit', $data);
     }
 
-
     /**
-     * Update the post
+     * Update the Post
      *
-     * @param PostCreateRequest $request
+     * @param PostUpdateRequest $request
      * @param int $id
      */
-     public function update(PostUpdateRequest $request, $id)
-     {
-         $post = Post::findOrFail($id);
-         $post->fill($request->postFillData());
-         $post->save();
-         $post->syncTags($request->get('tags', []));
+    public function update(PostUpdateRequest $request, $id)
+    {
+        $post = Post::findOrFail($id);
+        $post->fill($request->postFillData());
+        $post->save();
+        $post->syncTags($request->get('tags', []));
 
-         if ($request->action === 'continue') {
-             return redirect()
-                             ->back()
-                             ->withSuccess('Post saved.');
-         }
+        if ($request->action === 'continue') {
+            return redirect()
+                            ->back()
+                            ->withSuccess('Post saved.');
+        }
 
-         return redirect()
-                         ->route('admin.post.index')
-                         ->withSuccess('Post saved.');
-     }
+        return redirect()
+                        ->route('admin.post.index')
+                        ->withSuccess('Post saved.');
+    }
 
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return Response
+     */
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
@@ -92,7 +96,6 @@ class PostController extends Controller
         return redirect()
                         ->route('admin.post.index')
                         ->withSuccess('Post deleted.');
-
     }
 
 

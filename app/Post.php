@@ -66,10 +66,11 @@ class Post extends Model
     /**
      * Return the date portion of published_at
      */
-    public function getPublishDateAttribute($value){
+    public function getPublishDateAttribute($value)
+    {
         return $this->published_at->format('M-j-Y');
     }
-
+    
     /**
      * Return the time portion of published_at
      */
@@ -77,11 +78,12 @@ class Post extends Model
     {
         return $this->published_at->format('g:i A');
     }
-
+    
     /**
      * Alias for content_raw
      */
-    public function getContentAttribute($value){
+    public function getContentAttribute($value)
+    {
         return $this->content_raw;
     }
 
