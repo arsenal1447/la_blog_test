@@ -10,7 +10,7 @@
 >安装 cnpm
 
 *因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。32个赞！来自官网：“这是一个完整 npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步*。
-	
+
 	npm install cnpm -g --registry=https://registry.npm.taobao.org
 
 *注：cnpm跟npm用法完全一致，只是在执行命令时将npm改为cnpm（以下操作将以cnpm代替npm）。*
@@ -63,7 +63,7 @@
 	get('/', function () {
 	    return redirect('/blog');
 	});
-	
+
 	get('blog', 'BlogController@index');
 	get('blog/{slug}', 'BlogController@showPost');
 
@@ -72,7 +72,7 @@
 	Route::get('/', function () {
 	    return redirect('/blog');
 	});
-	
+
 	Route::get('blog', 'BlogController@index');
 	Route::get('blog/{slug}', 'BlogController@showPost');
 
@@ -87,7 +87,7 @@
 
 
 
-## 查看应用中的所有路由命令 
+## 查看应用中的所有路由命令
 
 	php artisan route:list
 
@@ -118,7 +118,7 @@
 ## 增加debug工具
 
 >cmd 运行 ：
-	
+
 	composer require barryvdh/laravel-debugbar
 
 **config/app.php**代码中添加相应代码，然后cmd运行
@@ -160,7 +160,7 @@
 	}
 
 
-## 修改gulpfile文件 
+## 修改gulpfile文件
 
 可能会提示缺少一些插件，安装即可
 
@@ -168,9 +168,9 @@
 
 
 依次执行
-	
-	gulp copyfiles 
-	gulp 
+
+	gulp copyfiles
+	gulp
 
 
 执行结果
@@ -184,8 +184,8 @@
 *现在 Bower 和 Gulp 都已经设置好了，前端资源也成功发布并引入视图文件了，最后我们还要添加另外两个高逼格的包：Font Awesome 和 DataTables，前者用于为 Bootstrap 设置图标字体，后者是一款 jQuery 表格插件，用于为 HTML 表格添加高级交互功能。*
 
 
-	bower install fontawesome --save 
-	bower install datatables --save 
+	bower install fontawesome --save
+	bower install datatables --save
 	bower install datatables-plugins --save
 
 我们还添加了 <font color="red">datatables-plugins</font> 以便使用 Bootstrap 风格的 DataTables。
@@ -208,14 +208,14 @@
 
 
 
-## 生成文件 
+## 生成文件
 	php artisan make:request TagCreateRequest
 	php artisan make:request TagUpdateRequest
 
 ## 添加自定义函数
-	app/helpers.php 
+	app/helpers.php
 
->修改文件composer.json 
+>修改文件composer.json
 
 	 "autoload": {
         "classmap": [
@@ -239,7 +239,7 @@
 	composer require "dflydev/apache-mime-types"
 
 ## 生成上传相关文件
-	
+
 	php artisan make:request UploadFileRequest
 
 	php artisan make:request UploadNewFolderRequest
@@ -268,3 +268,12 @@
 迁移已经创建并编辑好了，接下来我们登录到 Homestead 虚拟机中运行该迁移：
 
 	php artisan migrate
+
+## 添加 Selectize.js 和 Pickadate.js 前端插件
+*首先是 Selectize.js。Selectize.js 是一个基于 jQuery 的 UI 控件，对于标签选择和下拉列表功能非常有用。我们将使用它来处理文章标签输入。使用 Bower 下载 <font color="red">Seletize.js</font>：*
+
+	bower install selectize --save
+
+接下来下载 Pickadate.js。Pickadate.js 是一个轻量级的 jQuery 日期时间选择插件，日期时间插件很多，选择使用  Pickadate.js 的原因是它在小型设备上也有很好的体验。下面我们使用 Bower 下载安装 <font color="red">Pickadate.js</font>：
+
+	bower install pickadate --save
