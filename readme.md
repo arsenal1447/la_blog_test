@@ -297,3 +297,24 @@
 >首先使用 Artisan 命令创建任务类模板：
 
 	php artisan make:job PostFormFields
+
+
+## 使用 Clean Blog
+
+Clean Blog 是 Start Bootstrap 提供的一个免费博客模板，本节我们将使用该模板美化博客前台页面。
+
+使用 Bower 获取Clean Blog
+
+首先我们使用 Bower 下载 Clean Blog：
+
+	bower install clean-blog --save
+
+使用 Gulp 管理 Clean Blog 的 Less 文件
+
+编辑 gulpfile.js，在 copyfiles 任务底部添加如下这段代码：
+
+	// Copy clean-blog less files
+	gulp.src("vendor/bower_dl/clean-blog/less/**")
+	    .pipe(gulp.dest("resources/assets/less/clean-blog"));
+
+然后运行 gulp copyfiles，新添加的 clean blog 的资源文件就会被拷贝到 public 目录下。
