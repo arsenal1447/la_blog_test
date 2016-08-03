@@ -9,7 +9,7 @@ return [
         'posts_per_page'=>10,
         'uploads'=>[
                 'storage'=>'local',
-                'webpath'=>'/uploads/',
+                'webpath'=>'/uploads/laravel wenjianjia',
         ],
 ];
 ?>

@@ -44,7 +44,7 @@ class BlogIndexData extends Job implements SelfHandling
     public function normalIndexData()
     {
         $posts = Post::with('tags')
-                ->where('publushed_at','<=',Carbon::now())
+                ->where('published_at','<=',Carbon::now())
                 ->where('is_draft',0)
                 ->orderBy('published_at','desc')
                 ->simplePaginate(config('blog.posts_per_page'));
