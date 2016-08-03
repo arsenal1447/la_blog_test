@@ -318,3 +318,11 @@ Clean Blog 是 Start Bootstrap 提供的一个免费博客模板，本节我们�
 	    .pipe(gulp.dest("resources/assets/less/clean-blog"));
 
 然后运行 gulp copyfiles，新添加的 clean blog 的资源文件就会被拷贝到 public 目录下。
+
+##创建 BlogIndexData 任务
+
+如果请求参数中指定了标签，那么我们需要根据该标签来过滤要显示的文章。要实现该功能，我们创建一个独立的任务来聚合指定标签文章，而不是将业务逻辑一股脑写到控制器中。
+
+首先，使用 Artisan 命令创建一个任务类：
+
+	php artisan make:job BlogIndexData
