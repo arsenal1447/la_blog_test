@@ -7,10 +7,11 @@ return [
         'author'=>'zxx',
         'page_image'=>'home-bg.jpg',
         'posts_per_page'=>10,
-        'contact_email'=>'xxxx@qq.com',
+        'rss_size' => 25,
         'uploads'=>[
                 'storage'=>'local',
                 'webpath'=>'/uploads/laravel wenjianjia',
         ],
+        'contact_email'=>env('MAIL_FROM'),
 ];
 ?>

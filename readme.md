@@ -385,3 +385,15 @@ Supervisor 是 *nix 系统上用于监控和管理进程的工具，我们这里
 使用调度命令
 
 对小的站点而言还有一种方式是使用调度任务每分钟运行一次 queue:work，或者每五分钟，这可以通过使用 Laravel 5.1 的命令行调度器来完成。
+
+
+##实现 RSS 订阅
+RSS 订阅对大部分博客应用而言是必备功能。在 Laravrel 5.1 中实现 RSS 订阅非常便捷。
+
+安装 Composer 依赖包
+
+我们使用 suin/php-rss-writer 来生成 RSS 文件。
+
+首先使用 Composer 安装该依赖包：
+
+	composer require suin/php-rss-writer
