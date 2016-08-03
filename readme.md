@@ -339,3 +339,49 @@ Clean Blog 是 Start Bootstrap 提供的一个免费博客模板，本节我们�
 下面我们创建在路由中使用的控制器：
 
 	php artisan make:controller --plain ContactController
+	or
+	php artisan make:controller  ContactController
+
+
+##使用数据库驱动
+
+这里我们使用数据库驱动实现队列。
+
+登录到 Homestead 虚拟机，运行如下迁移命令创建存放队列任务的 <font color="red">jobs</font> 表：
+
+	php artisan queue:table 
+	php artisan migrate
+
+
+然后编辑 .env 文件并修改 QUEUE_DRIVER 的配置值为 database。
+
+##自动处理队列
+queue:work 命令有个缺陷，就是每次有新任务推送到队列后需要手动登录到服务器并运行该命令，任务才会被执行，这显然是不合理的，对此我们可以使用一些自动化解决方案。
+
+一种方式是将 artisan queue:listen 命令加入到服务器启动脚本中，该命令会在新任务推送到队列时自动调用 artisan queue:work。这种方案的问题是 queue:listen  命令会一直挂在那里，消耗 CPU 资源，而且一旦命令挂掉，新的任务还是无法执行，更好的解决方案是使用 Supervisor 来运行 queue:listen。
+
+**使用 Supervisor 运行 queue:listen**
+
+Supervisor 是 *nix 系统上用于监控和管理进程的工具，我们这里不深入探究如何安装这个工具，如果你使用 Homestead 作为本地开发环境，则该工具已经为我们安装好了。
+
+以 Homestead 上预装的 Supervisor 为例，在 /etc/supervisor/conf.d 目录下创建 blog.conf，并编辑该文件内容如下：
+
+	[program:blog-queue-listen]
+	command=php /home/vagrant/Code/blog/artisan queue:listen
+	user=vagrant
+	process_name=%(program_name)s_%(process_num)d
+	directory=/home/vagrant/Code/blog
+	stdout_logfile=/home/vagrant/Code/blog/storage/logs/supervisord.log
+	redirect_stderr=true
+	numprocs=1
+保存该文件后关闭在正在运行的 Supervisor 服务，然后使用如下命令重新启动 Supervisor：
+
+	sudo supervisord -c /etc/supervisor/supervisord.conf
+使用如下命令可以查看所有正在监听的队列：
+
+	sudo supervisorctl status
+这样，推送到队列的任务就可以正常被执行了。
+
+使用调度命令
+
+对小的站点而言还有一种方式是使用调度任务每分钟运行一次 queue:work，或者每五分钟，这可以通过使用 Laravel 5.1 的命令行调度器来完成。
