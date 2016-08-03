@@ -7,6 +7,7 @@ return [
         'author'=>'zxx',
         'page_image'=>'home-bg.jpg',
         'posts_per_page'=>10,
+        'contact_email'=>'xxxx@qq.com',
         'uploads'=>[
                 'storage'=>'local',
                 'webpath'=>'/uploads/laravel wenjianjia',

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\ContactMeRequest;
@@ -23,21 +22,24 @@ class ContactController extends Controller
         return view('blog.contact');
     }
 
+    /**
+     * Email the contact request
+     *
+     * @param ContactMeRequest $request
+     * @return Redirect
+     */
+    public function sendContactInfo(ContactMeRequest $request)
+    {   
+        $data = $request->only('name', 'email', 'phone');
+        $data['messageLines'] = explode("\n", $request->get('message'));
 
-    public function sendContactInfo()
-    {
-        $data = $request->only('name','email','phone');
-        $data['message'] = explode("\n",$request->get('message'));
-
-        Mail::send('emails.contact',$data, function($message) use ($data){
-            $messgae->subject('Blog Contact Form:'.$dta['name'])
-                ->to(config('blog.contact_email'))
-                ->raplyTo($data['email']);
-        })
+        Mail::send('emails.contact', $data, function ($message) use ($data) {
+            $message->subject('Blog Contact Form: '.$data['name'])
+              ->to(config('blog.contact_email'))
+              ->replyTo($data['email']);
+        });
 
         return back()
-            ->withSuccesss("Thank you for your message. It has been sent");
-
-
+            ->withSuccess("Thank you for your message. It has been sent.");
     }
 }

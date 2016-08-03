@@ -3,13 +3,10 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-
 class ContactMeRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize()
     {
@@ -18,15 +15,13 @@ class ContactMeRequest extends Request
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
     public function rules()
     {
         return [
-            'name'=>'required',
-            'email'=>'required|email',
-            'message'=>'required',
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required',
         ];
     }
 }
