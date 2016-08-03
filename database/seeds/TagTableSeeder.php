@@ -3,9 +3,11 @@
 use App\Tag;
 use Illuminate\Database\Seeder;
 
-
 class TagTableSeeder extends Seeder
 {
+    /**
+     * Seed the tags table
+     */
     public function run()
     {
         Tag::truncate();
@@ -13,5 +15,3 @@ class TagTableSeeder extends Seeder
         factory(Tag::class, 5)->create();
     }
 }
-
- ?>
