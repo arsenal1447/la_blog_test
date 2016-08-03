@@ -326,3 +326,16 @@ Clean Blog 是 Start Bootstrap 提供的一个免费博客模板，本节我们�
 首先，使用 Artisan 命令创建一个任务类：
 
 	php artisan make:job BlogIndexData
+
+
+## 创建表单请求类
+
+我们知道联系表单包含用户名，邮箱地址，以及消息内容，这里我们和之前后台系统一样使用表单请求类来对表单字段进行验证。使用 Artisan 命令创建该请求类：
+
+	php artisan make:request ContactMeRequest
+
+##创建控制器
+
+下面我们创建在路由中使用的控制器：
+
+	php artisan make:controller --plain ContactController
