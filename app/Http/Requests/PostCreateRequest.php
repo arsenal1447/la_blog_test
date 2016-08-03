@@ -50,7 +50,7 @@ class PostCreateRequest extends Request
             'content_raw'=>$this->get('content'),
             'meta_description'=>$this->meta_description,
             'is_draft'=>(bool)$this->is_draft,
-            'publish_at'=>$publish_at,
+            'published_at'=>$publish_at,
             'layout'=>$this->layout,
         ];
     }
