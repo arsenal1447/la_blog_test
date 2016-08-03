@@ -91,10 +91,16 @@ elixir(function(mix) {
         'js/jquery.dataTables.js',
         'js/dataTables.bootstrap.js'
         ],
-        'public/assets/js/admin.js',
-        'resources/assets'
-    );
+        'public/assets/js/admin.js','resources/assets');
+
+    //combine blog scripts
+    mix.scripts([
+        'js/jquery.js',
+        'js/bootstrap.js',
+        'js/blog.js',
+    ],'public/assets/js/blog.js','resources//assets');
 
     // 编译 Less
     mix.less('admin.less', 'public/assets/css/admin.css');
+    mix.less('blog.less', 'public/assets/css/blog.css');
 });
