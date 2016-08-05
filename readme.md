@@ -349,7 +349,7 @@ Clean Blog 是 Start Bootstrap 提供的一个免费博客模板，本节我们�
 
 登录到 Homestead 虚拟机，运行如下迁移命令创建存放队列任务的 <font color="red">jobs</font> 表：
 
-	php artisan queue:table 
+	php artisan queue:table
 	php artisan migrate
 
 
@@ -397,3 +397,7 @@ RSS 订阅对大部分博客应用而言是必备功能。在 Laravrel 5.1 中�
 首先使用 Composer 安装该依赖包：
 
 	composer require suin/php-rss-writer
+
+
+## Api接口
+	http://local.blog_test.com/api/show

@@ -49,6 +49,12 @@ Route::get('/logout','Auth\AuthController@getLogout');//登陆可能遇到问题
 
 
 
+// API 相关
+Route::group(['prefix' => 'api', 'namespace' => 'Api'], function(){
+    Route::any('router', 'RouterController@index');  // API 入口
+    Route::any('show', 'RouterController@showPost');  // API 入口
+});
+
 
 
 
