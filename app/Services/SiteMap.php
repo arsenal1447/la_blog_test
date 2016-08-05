@@ -11,15 +11,15 @@ class SiteMap
     /**
      * Return the content of the Site Map
      */
-    public function getSiteMap()
-    {
-        if(Cache::has('site_map')){
-            return Cache::get('site_map');
-        }
+     public function getSiteMap()
+     {
+         if (Cache::has('site-map')) {
+           return Cache::get('site-map');
+         }
 
-        $sitemap = $this->buildSiteMap();
-        Cache::add('site-map',$sitemap, 120);
-        return $sitemap;
+         $siteMap = $this->buildSiteMap();
+         Cache::add('site-map', $siteMap, 120);
+         return $siteMap;
     }
 
     /**
@@ -27,45 +27,46 @@ class SiteMap
      */
     protected function buildSiteMap()
     {
-        $postinfo = $this->getPostsInfo();
-        $dates = array_values($postinfo);
+        $postsInfo = $this->getPostsInfo();
+        $dates = array_values($postsInfo);
         sort($dates);
         $lastmod = last($dates);
         // $url = trim(url(),'/').'/';
         $url = str_finish(url('/'), '/');
 
         $xml = [];
-        $xml[] = '<?xml version="1.0" encodeing="UTF-8"?'.'>';
-        $xml[] = '<urlset xmlns = "http://www.sitemaps.org/schemas/sitemap/0.9">';
+        $xml[] = '<?xml version="1.0" encoding="UTF-8"?'.'>';
+        $xml[] = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
         $xml[] = '  <url>';
-        $xml[] = "      <loc>$url</loc>";
-        $xml[] = "      <lastmod>$lastmod</lastmod>";
-        $xml[] = '      <changefreq>daily</changefreq>';
-        $xml[] = '      <priority>0.8</priority>';
+        $xml[] = "    <loc>$url</loc>";
+        $xml[] = "    <lastmod>$lastmod</lastmod>";
+        $xml[] = '    <changefreq>daily</changefreq>';
+        $xml[] = '    <priority>0.8</priority>';
         $xml[] = '  </url>';
 
-        foreach($postinfo as $slug => $lastmod){
-            $xml[] = '  <url>';
-            $xml[] = "      <loc>{$url}blog/$slug</loc>";
-            $xml[] = "      <lastmod>$lastmod</lastmod>";
-            $xml[] = '  </url>';
+        foreach ($postsInfo as $slug => $lastmod) {
+          $xml[] = '  <url>';
+          $xml[] = "    <loc>{$url}blog/$slug</loc>";
+          $xml[] = "    <lastmod>$lastmod</lastmod>";
+          $xml[] = "  </url>";
         }
 
         $xml[] = '</urlset>';
 
-        return join("\n",$xml);
-    }
+        return join("\n", $xml);
+        // return $xml;
+      }
 
     /**
-   * Return all the posts as $url => $date
-   */
+    * Return all the posts as $url => $date
+    */
     protected function getPostsInfo()
     {
-        return Post::where('published_at','<=', Carbon::now())
-            ->where('is_draft',0)
-            ->orderBy('published_at','desc')
-            ->lists('updated_at','slug')
-            ->all();
+    return Post::where('published_at', '<=', Carbon::now())
+      ->where('is_draft', 0)
+      ->orderBy('published_at', 'desc')
+      ->lists('updated_at', 'slug')
+      ->all();
     }
 }
 

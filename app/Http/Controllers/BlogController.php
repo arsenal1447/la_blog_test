@@ -46,6 +46,6 @@ class BlogController extends Controller
         $map = $siteMap->getSiteMap();
 
         return response($map)
-            ->header('Content-type','text/xml');
+          ->header('Content-type', 'text/xml');
     }
 }
