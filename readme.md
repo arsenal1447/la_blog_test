@@ -1,5 +1,11 @@
 # Laravel PHP Framework
 
+本文基于laravel 5.2
+
+原文地址：http://laravelcoding.com/blog/laravel-5-beauty-setting-up-a-windows-machine
+
+中文翻译地址：http://laravelacademy.org/post/2116.html
+
 ## 遇到问题
 	npm install laravel-elixir --save-dev
 
