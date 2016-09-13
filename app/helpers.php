@@ -47,14 +47,18 @@
      * @param string $flg
      */
     function pr($arr,$flg=''){
-        if(is_array($arr)){
+        if(is_array($arr) || is_object($arr)){
             echo "<pre>";
             print_R($arr);
             echo "</pre>";
-        }elseif(is_string($arr)){
-            echo "<br>arr==";
+        }elseif(is_string($arr) ){
+            echo "<br>string==";
             echo $arr;
             echo "</br>";
+        }elseif (is_bool($arr)){
+            echo "<pre>";
+            var_dump($arr);
+            echo "</pre>";
         }
         if(!$flg){
             die('arr end');
