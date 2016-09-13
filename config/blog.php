@@ -1,7 +1,7 @@
 <?php
 return [
-        'name'=>'周鑫鑫的博客',
-        'title'=>'周鑫鑫的博客',
+        'name'=>'My blog',
+        'title'=>'My blog',
         'subtitle'=>'http://blog.zxx123.cn',
         'description'=>'Laravel学习blog',
         'author'=>'周鑫鑫',
