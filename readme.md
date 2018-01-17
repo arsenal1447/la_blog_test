@@ -95,7 +95,9 @@
 
 ![](https://github.com/zxx1988328/la_blog_test/blob/master/img/route.png)
 
-
+```
+php artisan tinker
+```
 ## add amdin user
 
 	Psy Shell v0.7.2 (PHP 5.6.11 — cli) by Justin Hilemanan
