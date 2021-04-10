@@ -1,0 +1,9 @@
+#/bin/bash
+# abc是个列表，比如是一列uid
+
+rm data_all.txt
+
+for line in `cat abc.txt`
+do
+    sh getuid.sh ${line}
+done
